@@ -1,13 +1,15 @@
-<script setup>
+<script setup lang="ts">
+import { UIEmail } from "../types/email";
+
 const props = defineProps({
-  emailsList: Array,
+  emailsList: { type: Array<UIEmail>, required: true },
 });
 
-const activeEmailId = ref(null);
+const activeEmailId: Ref<Number | null> = ref(null);
 
 const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
-const onEmailClick = (id) => {
+const onEmailClick = (id: Number) => {
   activeEmailId.value = id;
   openModal();
 };
@@ -22,19 +24,17 @@ const onEmailClick = (id) => {
       @click="onEmailClick(email.id)"
     >
       <input type="checkbox" v-model="email.selected" @click.stop="" />
-      <p>{{ email.text }}</p>
+      <p class="email-title">{{ email.text }}</p>
     </div>
 
-    <transition name="slide-right">
-      <modal v-if="isModalOpen" :close="closeModal">
-        <div class="modal-header">
-          <div class="modal-button">Mark as read (r)</div>
-          <div class="modal-button">Archive (a)</div>
-        </div>
+    <modal v-if="isModalOpen" :close="closeModal">
+      <div class="modal-header">
+        <div class="modal-button">Mark as read (r)</div>
+        <div class="modal-button">Archive (a)</div>
+      </div>
 
-        <p>{{ emailsList.find((email) => email.id == activeEmailId).text }}</p>
-      </modal>
-    </transition>
+      <p>{{ emailsList.find((email) => email.id == activeEmailId).text }}</p>
+    </modal>
   </div>
 </template>
 
@@ -42,21 +42,31 @@ const onEmailClick = (id) => {
 .emails-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
+
 .email {
-  background-color: #f9f9f9;
-  border-radius: 5px;
   display: flex;
-  gap: 15px;
+  height: 60px;
+  width: calc(100vw - 260px);
+  padding: 0px 24px;
   align-items: center;
-  width: 500px;
-  padding: 0 20px;
-  border: 1px solid #fbfbfb;
+  gap: 15px;
+  align-self: stretch;
+  border: 0.5px solid #e5e7eb;
+  background: #fff;
+}
+
+.email-title {
+  color: #121829;
+  font-family: Preevio;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .email--disabled {
-  opacity: 0.5;
+  background: #f3f6fb;
 }
 
 .modal-header {

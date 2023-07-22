@@ -14,49 +14,53 @@ const { emails, selectedEmails, selectAll, markSelectedAsRead, resetEmails } =
 
 <template>
   <div class="inbox-container">
-    <div class="inner-container">
-      <h2>Archive</h2>
-      <h1>Emails Selected ({{ selectedEmails.length }})</h1>
+    <h2 class="title">Archive</h2>
 
-      <div class="emails-list">
-        <header>
+    <div class="emails-list">
+      <div class="header">
+        <div>
           <input
             type="checkbox"
             @click.stop="selectAll"
             v-model="allSelected"
           />
-          <div class="button" @click="markSelectedAsRead">Mark as read (r)</div>
-          <!-- <div class="button" @click="unArchive">Archive (a)</div> -->
-        </header>
-
-        <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
+          Emails Selected ({{ selectedEmails.length }})
+        </div>
       </div>
+
+      <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
     </div>
   </div>
 </template>
 
 <style scoped>
 inbox-container {
-  width: 70vh;
+  width: calc(100vw - 300px);
   height: 100vh;
   flex-shrink: 2;
-  padding: 20px;
 }
 
-.inner-container {
-  margin-left: 40px;
+.title {
+  margin-left: 20px;
 }
 
-header {
+.header {
   display: flex;
+  height: 60px;
+  width: calc(100vw - 320px);
+  padding: 0px 24px;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+
+  align-self: stretch;
+
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
 }
 
 .emails-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .button {

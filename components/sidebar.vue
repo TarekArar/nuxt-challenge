@@ -2,38 +2,74 @@
 import { useMailsStore } from "../store/mails";
 
 const store = useMailsStore();
+const route = useRoute();
+
+onMounted(() => {
+  console.log(route);
+});
 </script>
 
 <template>
   <div class="sidebar">
-    <div class="sidebar-links">
-      <button class="button">
-        <NuxtLink to="/inbox" class="link">
-          Inbox ({{ store.inboxEmails.length }})
+    <img src="~/assets/icons/logo.svg" alt="App Logo" />
+    <div class="sidebar-body">
+      <div class="sidebar-links">
+        <NuxtLink
+          to="/"
+          :class="{
+            sidebar_button: true,
+            'sidebar_button--active': route.href == '/',
+          }"
+        >
+          <div class="link_info">
+            <img src="~/assets/icons/inbox.svg" />
+            <p>Inbox</p>
+          </div>
+          <p class="count">{{ store.inboxEmails.length }}</p>
         </NuxtLink>
-      </button>
 
-      <button class="button">
-        <NuxtLink to="/archive" class="link">
-          Archive ({{ store.archivedEmails.length }})
+        <NuxtLink
+          to="/archive"
+          :class="{
+            sidebar_button: true,
+            'sidebar_button--active': route.href == '/archive',
+          }"
+        >
+          <div class="link_info">
+            <img src="~/assets/icons/archive.svg" />
+            <p>Archive</p>
+          </div>
+          <p class="count">{{ store.archivedEmails.length }}</p>
         </NuxtLink>
-      </button>
+      </div>
+
+      <div class="sidebar_button">
+        <div class="link_info">
+          <img src="~/assets/icons/logout.svg" />
+          <p>Logout</p>
+        </div>
+      </div>
     </div>
-
-    <button class="button">Logout</button>
   </div>
 </template>
 
 <style scoped>
 .sidebar {
+  height: 95vh;
+  width: 260px;
+  padding: 20px;
+
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.sidebar-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: #373636;
-  height: 95vh;
-  max-width: 30vw;
-  padding: 20px;
+  height: 85vh;
+  margin-top: 32px;
 }
 
 .sidebar-links {
@@ -42,21 +78,32 @@ const store = useMailsStore();
   gap: 15px;
 }
 
-.button {
-  background: #f9f9f9;
-  width: 280px;
-  height: 35px;
-  padding: 5px 15px;
+.sidebar_button {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  width: 200px;
+  height: 24px;
 
-  display: block;
-
-  font-weight: bold;
-  text-align: start;
-  border-radius: 4px;
+  color: #4b5563;
+  font-family: Preevio;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.link {
-  text-decoration: none;
-  color: #000;
+.sidebar_button--active {
+  border-radius: 54px;
+  background: #d6e2fb;
+}
+
+.link_info {
+  display: flex;
+  gap: 8px;
 }
 </style>

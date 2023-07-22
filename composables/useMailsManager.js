@@ -25,7 +25,10 @@ export default function useMailsManager(initialMails) {
   };
 
   const keydownEventListener = (event) => {
-    console.log(event.keyCode);
+    if (event.keyCode == 67) {
+      archiveEmails();
+    }
+
     if (event.keyCode == 82) {
       markSelectedAsRead();
     }
@@ -39,13 +42,11 @@ export default function useMailsManager(initialMails) {
     document.removeEventListener("keydown", keydownEventListener);
   });
 
-  return { emails, selectedEmails, selectAll, markSelectedAsRead, resetEmails };
+  return {
+    emails,
+    selectedEmails,
+    selectAll,
+    markSelectedAsRead,
+    resetEmails,
+  };
 }
-
-// watch(store.inboxEmails, () => {
-//   emails.value = store.inboxEmails.map((el) => ({
-//     ...el,
-//     selected: false,
-//     read: false,
-//   }));
-// });
