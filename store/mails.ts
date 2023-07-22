@@ -53,7 +53,8 @@ const initialEmails = [
   },
   {
     id: 8,
-    subject: "Uh oh your prescription is expiring",
+    subject:
+      "Uh oh your prescription is expiring Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis",
     content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },

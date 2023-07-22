@@ -21,9 +21,8 @@ const route = useRoute();
 }
 
 .main {
-  max-width: calc(100vw - 350px);
+  max-width: calc(100vw - 300px);
   height: 100vh;
-  flex-shrink: 2;
 }
 
 .title {

@@ -55,7 +55,7 @@ onUnmounted(() => {
         :value="email.selected"
         @click.stop="email.selected = !email.selected"
       />
-      <p>{{ email.subject }}</p>
+      <p class="email__title">{{ email.subject }}</p>
     </div>
 
     <modal v-if="isModalOpen" :close="closeModal">
@@ -100,16 +100,19 @@ onUnmounted(() => {
 
 .email {
   display: flex;
-  height: 60px;
-  width: calc(100vw - 260px);
+  width: calc(100vw - 300px);
 
-  padding: 0px 24px;
+  padding: 5px 24px;
   align-items: center;
   gap: 15px;
   align-self: stretch;
   border: 0.5px solid #e5e7eb;
 
   cursor: pointer;
+}
+
+.email__title {
+  max-width: 90%;
 }
 
 .email--disabled {

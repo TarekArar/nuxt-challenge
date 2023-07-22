@@ -69,7 +69,6 @@ onUnmounted(() => {
 .emails-list {
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 350px);
 }
 
 .header {
@@ -77,7 +76,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
 
-  padding-left: 20px;
+  padding: 0 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #e5e7eb;
 }
