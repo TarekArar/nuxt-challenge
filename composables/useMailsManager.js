@@ -14,8 +14,14 @@ export default function useMailsManager(initialMails) {
       read: false,
     })));
 
-  const selectAll = (event) => {
-    emails.value.map((email) => (email.selected = event.target.checked));
+  const allSelected = computed(() => emails.value.every((el) => el.selected));
+
+  const selectAll = () => {
+    const alreadySelected = allSelected.value;
+
+    emails.value.map((email) => {
+      email.selected = !alreadySelected;
+    });
   };
 
   const markSelectedAsRead = () => {
@@ -27,6 +33,7 @@ export default function useMailsManager(initialMails) {
   return {
     emails,
     selectedEmails,
+    allSelected,
     selectAll,
     markSelectedAsRead,
     resetEmails,

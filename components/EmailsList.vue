@@ -30,13 +30,12 @@ const onEmailClick = (email: UIEmail) => {
       :class="{ email: true, 'email--disabled': email.read }"
       @click="onEmailClick(email)"
     >
-      <input
-        type="checkbox"
-        class="email__checkbox"
-        v-model="email.selected"
-        @click.stop=""
+      <custom-checkbox
+        :modelValue="email.selected"
+        :value="email.selected"
+        @click.stop="email.selected = !email.selected"
       />
-      <p class="email-title">{{ email.subject }}</p>
+      <p>{{ email.subject }}</p>
     </div>
 
     <modal v-if="isModalOpen" :close="closeModal">
@@ -87,16 +86,8 @@ const onEmailClick = (email: UIEmail) => {
   gap: 15px;
   align-self: stretch;
   border: 0.5px solid #e5e7eb;
-  background: #fff;
-}
 
-.email-title {
-  color: #121829;
-  font-family: Preevio;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  cursor: pointer;
 }
 
 .email--disabled {

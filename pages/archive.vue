@@ -3,16 +3,26 @@ import { useMailsStore } from "../store/mails";
 
 const store = useMailsStore();
 
-const { emails, selectedEmails, selectAll, markSelectedAsRead, resetEmails } =
-  useMailsManager(store.archivedEmails);
+const {
+  emails,
+  selectedEmails,
+  allSelected,
+  selectAll,
+  markSelectedAsRead,
+  resetEmails,
+} = useMailsManager(store.archivedEmails);
 </script>
 
 <template>
   <div class="emails-list">
     <div class="header">
-      <div>
-        <input type="checkbox" @click.stop="selectAll" v-model="allSelected" />
-        Emails Selected ({{ selectedEmails.length }})
+      <div class="header-action">
+        <custom-checkbox
+          :modelValue="allSelected"
+          :value="allSelected"
+          @click.stop="selectAll"
+        />
+        <p>Emails Selected ({{ selectedEmails.length }})</p>
       </div>
     </div>
 
@@ -58,5 +68,11 @@ inbox-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 </style>

@@ -9,6 +9,12 @@ onMounted(() => {
     if (event.keyCode == 27) props.close();
   });
 });
+
+const onClose = () => {
+  const el = document.querySelector(".modal");
+
+  el.animate();
+};
 </script>
 
 <template>
@@ -43,7 +49,7 @@ onMounted(() => {
 
 @keyframes slidein {
   from {
-    transform: translateX(40vw);
+    transform: translateX(100%);
   }
 
   to {

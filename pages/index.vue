@@ -3,8 +3,14 @@ import { useMailsStore } from "../store/mails";
 
 const store = useMailsStore();
 
-const { emails, selectedEmails, selectAll, markSelectedAsRead, resetEmails } =
-  useMailsManager(store.inboxEmails);
+const {
+  emails,
+  selectedEmails,
+  allSelected,
+  selectAll,
+  markSelectedAsRead,
+  resetEmails,
+} = useMailsManager(store.inboxEmails);
 
 const archive = () => {
   selectedEmails.value.map((el) => store.archiveEmail(el.id));
@@ -29,18 +35,18 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener("keydown", keydownEventListener);
 });
-
-const allSelected = computed(
-  () => selectedEmails.value.length == emails.value.length
-);
 </script>
 
 <template>
   <div class="emails-list">
     <div class="header">
-      <div>
-        <input type="checkbox" @click.stop="selectAll" v-model="allSelected" />
-        Emails Selected ({{ selectedEmails.length }})
+      <div class="header-action">
+        <custom-checkbox
+          @click.stop="selectAll"
+          :modelValue="allSelected"
+          :value="allSelected"
+        />
+        <p>Emails Selected ({{ selectedEmails.length }})</p>
       </div>
 
       <div class="header-actions">
@@ -89,5 +95,9 @@ const allSelected = computed(
 .header-action {
   display: flex;
   gap: 8px;
+}
+
+.custom-checkbox {
+  cursor: pointer;
 }
 </style>
