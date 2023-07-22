@@ -12,16 +12,16 @@ onMounted(() => {
 <template>
   <div class="sidebar">
     <img src="~/assets/icons/logo.svg" alt="App Logo" />
-    <div class="sidebar-body">
-      <div class="sidebar-links">
+    <div class="sidebar__body">
+      <div class="sidebar__links">
         <NuxtLink
           to="/"
           :class="{
-            sidebar_button: true,
-            'sidebar_button--active': route.href == '/',
+            sidebar__button: true,
+            'sidebar__button--active': route.href == '/',
           }"
         >
-          <div class="link_info">
+          <div class="link__info">
             <img src="~/assets/icons/inbox.svg" />
             <p>Inbox</p>
           </div>
@@ -31,11 +31,11 @@ onMounted(() => {
         <NuxtLink
           to="/archive"
           :class="{
-            sidebar_button: true,
-            'sidebar_button--active': route.href == '/archive',
+            sidebar__button: true,
+            'sidebar__button--active': route.href == '/archive',
           }"
         >
-          <div class="link_info">
+          <div class="link__info">
             <img src="~/assets/icons/archive.svg" />
             <p>Archive</p>
           </div>
@@ -43,8 +43,8 @@ onMounted(() => {
         </NuxtLink>
       </div>
 
-      <div class="sidebar_button">
-        <div class="link_info">
+      <div class="sidebar__button">
+        <div class="link__info">
           <img src="~/assets/icons/logout.svg" />
           <p>Logout</p>
         </div>
@@ -63,7 +63,7 @@ onMounted(() => {
   background: #f8fafc;
 }
 
-.sidebar-body {
+.sidebar__body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,37 +72,36 @@ onMounted(() => {
   margin-top: 32px;
 }
 
-.sidebar-links {
+.sidebar__links {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.sidebar_button {
+.sidebar__button {
+  width: 200px;
+  height: 24px;
+
+  cursor: pointer;
+
   display: flex;
   padding: 12px 24px;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
-  width: 200px;
-  height: 24px;
 
-  color: #4b5563;
-  font-family: Preevio;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
   text-decoration: none;
-  cursor: pointer;
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.sidebar_button--active {
+.sidebar__button--active {
   border-radius: 54px;
   background: #d6e2fb;
+  color: #121829;
 }
 
-.link_info {
+.link__info {
   display: flex;
   gap: 8px;
 }

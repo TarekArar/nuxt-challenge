@@ -74,17 +74,12 @@ onUnmounted(() => {
 
 .header {
   display: flex;
-  height: 60px;
-  /* max-width: calc(100vw - 350px); */
   align-items: center;
   justify-content: space-between;
 
   padding-left: 20px;
-
-  align-self: stretch;
-
-  border-bottom: 0.5px solid #e5e7eb;
-  background: #fff;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .header-actions {
@@ -95,9 +90,5 @@ onUnmounted(() => {
 .header-action {
   display: flex;
   gap: 8px;
-}
-
-.custom-checkbox {
-  cursor: pointer;
 }
 </style>

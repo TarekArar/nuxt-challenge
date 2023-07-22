@@ -5,9 +5,11 @@ const props = defineProps({
   emailsList: { type: Array<UIEmail>, required: true },
 });
 
-const emit = defineEmits(["archive"]);
+const emit = defineEmits(["archive", "read"]);
 
-const onArchive = (id: Number) => emit("archive", id);
+const onArchive = () => emit("archive", activeEmail.value?.id);
+
+const onRead = () => emit("read", activeEmail.value?.id);
 
 const activeEmail: Ref<UIEmail | null> = ref(null);
 
@@ -17,6 +19,24 @@ const onEmailClick = (email: UIEmail) => {
   activeEmail.value = email;
   openModal();
 };
+
+const keydownEventListener = (event: any) => {
+  if (event.keyCode == 65) {
+    onArchive();
+  }
+
+  if (event.keyCode == 82) {
+    onRead();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("keydown", keydownEventListener);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("keydown", keydownEventListener);
+});
 </script>
 
 <template>
@@ -112,15 +132,5 @@ const onEmailClick = (email: UIEmail) => {
 .modal-action {
   display: flex;
   gap: 8px;
-}
-
-.email__checkbox {
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-}
-
-.input[type="checkbox"]:checked {
-  background-color: #0968fe;
 }
 </style>

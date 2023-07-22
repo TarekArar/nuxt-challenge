@@ -3,14 +3,10 @@ import { useMailsStore } from "../store/mails";
 
 const store = useMailsStore();
 
-const {
-  emails,
-  selectedEmails,
-  allSelected,
-  selectAll,
-  markSelectedAsRead,
-  resetEmails,
-} = useMailsManager(store.archivedEmails);
+const { emails, selectedEmails, allSelected, selectAll, markSelectedAsRead } =
+  useMailsManager(store.archivedEmails);
+
+const markItemAsRead = (id) => (emails.value.read = true);
 </script>
 
 <template>
@@ -26,48 +22,25 @@ const {
       </div>
     </div>
 
-    <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
+    <EmailsList
+      :emailsList="emails"
+      @archive="store.archiveEmail"
+      @read="markItemAsRead"
+    />
   </div>
 </template>
 
 <style scoped>
-inbox-container {
-  width: calc(100vw - 300px);
-  height: 100vh;
-  flex-shrink: 2;
-}
-
-.title {
-  margin-left: 20px;
-}
-
-.header {
-  display: flex;
-  height: 60px;
-  width: calc(100vw - 320px);
-  padding: 0px 24px;
-  align-items: center;
-  justify-content: space-between;
-
-  align-self: stretch;
-
-  border-bottom: 1px solid #e5e7eb;
-  background: #fff;
-}
-
 .emails-list {
   display: flex;
   flex-direction: column;
 }
 
-.button {
-  background: #f9f9f9;
-  height: 30px;
-  padding: 5px 20px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.header {
+  padding-left: 20px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .header-action {

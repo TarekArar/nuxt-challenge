@@ -56,8 +56,4 @@ const onClose = () => {
     transform: translateX(0);
   }
 }
-
-.close {
-  margin-bottom: 20px;
-}
 </style>
