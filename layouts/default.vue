@@ -3,7 +3,7 @@ const route = useRoute();
 </script>
 
 <template>
-  <div class="container">
+  <div class="layout__container">
     <sidebar />
     <div class="main">
       <h2 class="title">{{ route.name == "index" ? "Inbox" : route.name }}</h2>
@@ -13,13 +13,11 @@ const route = useRoute();
 </template>
 
 <style scoped>
-body,
-* {
-  font-family: "Almarai", sans-serif;
-}
-.container {
+.layout__container {
   display: flex;
-  width: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .main {

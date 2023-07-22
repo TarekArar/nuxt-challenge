@@ -40,7 +40,7 @@ onUnmounted(() => {
 <template>
   <div class="emails-list">
     <div class="header">
-      <div class="header-action">
+      <div class="header__action">
         <custom-checkbox
           @click.stop="selectAll"
           :modelValue="allSelected"
@@ -49,12 +49,12 @@ onUnmounted(() => {
         <p>Emails Selected ({{ selectedEmails.length }})</p>
       </div>
 
-      <div class="header-actions">
-        <div class="header-action" @click="markSelectedAsRead">
+      <div class="header__actions">
+        <div class="header__action" @click="markSelectedAsRead">
           <img src="~/assets/icons/mail.svg" />
           <p>Mark as read (r)</p>
         </div>
-        <div class="header-action" @click="archive">
+        <div class="header__action" @click="archive">
           <img src="~/assets/icons/trash.svg" />
           <p>Archive (a)</p>
         </div>
@@ -82,12 +82,12 @@ onUnmounted(() => {
   border-bottom: 1px solid #e5e7eb;
 }
 
-.header-actions {
+.header__actions {
   display: flex;
   gap: 20px;
 }
 
-.header-action {
+.header__action {
   display: flex;
   gap: 8px;
 }

@@ -12,7 +12,7 @@ const markItemAsRead = (id) => (emails.value.read = true);
 <template>
   <div class="emails-list">
     <div class="header">
-      <div class="header-action">
+      <div class="header__action">
         <custom-checkbox
           :modelValue="allSelected"
           :value="allSelected"
@@ -43,7 +43,7 @@ const markItemAsRead = (id) => (emails.value.read = true);
   border-bottom: 1px solid #e5e7eb;
 }
 
-.header-action {
+.header__action {
   display: flex;
   align-items: center;
   gap: 8px;

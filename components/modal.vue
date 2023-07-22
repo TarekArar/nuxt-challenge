@@ -18,7 +18,7 @@ const onClose = () => {
 </script>
 
 <template>
-  <div class="modal-overlay" @click.passive="close">
+  <div class="modal__overlay" @click.passive="close">
     <div class="modal" @click.stop="">
       <slot />
     </div>
@@ -26,7 +26,7 @@ const onClose = () => {
 </template>
 
 <style scoped>
-.modal-overlay {
+.modal__overlay {
   position: fixed;
   top: 0;
   bottom: 0;

@@ -43,7 +43,7 @@ onUnmounted(() => {
   <div class="emails--empty" v-if="emailsList.length == 0">
     There is no emails
   </div>
-  <div v-else class="emails-container">
+  <div v-else class="emails__container">
     <div
       v-for="email in emailsList"
       :key="email.id"
@@ -59,15 +59,15 @@ onUnmounted(() => {
     </div>
 
     <modal v-if="isModalOpen" :close="closeModal">
-      <div class="modal-header">
+      <div class="modal__header">
         <p @click="closeModal">Close (ESC)</p>
 
-        <div class="modal-actions">
-          <div class="modal-action">
+        <div class="modal__actions">
+          <div class="modal__action">
             <img src="~/assets/icons/mail.svg" />
             <p>Mark as read (r)</p>
           </div>
-          <div class="modal-action">
+          <div class="modal__action">
             <img
               src="~/assets/icons/trash.svg"
               @click="archive(activeEmail?.id)"
@@ -84,9 +84,10 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.emails-container {
+.emails__container {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .emails--empty {
@@ -101,6 +102,7 @@ onUnmounted(() => {
   display: flex;
   height: 60px;
   width: calc(100vw - 260px);
+
   padding: 0px 24px;
   align-items: center;
   gap: 15px;
@@ -114,7 +116,7 @@ onUnmounted(() => {
   background: #f3f6fb;
 }
 
-.modal-header {
+.modal__header {
   display: flex;
   height: 60px;
   width: 100%;
@@ -124,12 +126,12 @@ onUnmounted(() => {
   align-self: stretch;
 }
 
-.modal-actions {
+.modal__actions {
   display: flex;
   gap: 20px;
 }
 
-.modal-action {
+.modal__action {
   display: flex;
   gap: 8px;
 }

@@ -17,9 +17,9 @@ const model = computed({
 </script>
 
 <template>
-  <div class="checkbox-container">
+  <div class="checkbox__container">
     <input
-      class="custom-checkbox"
+      class="custom__checkbox"
       type="checkbox"
       v-model="model"
       :value="value"
@@ -29,18 +29,18 @@ const model = computed({
 </template>
 
 <style scoped>
-.checkbox-container {
+.checkbox__container {
   display: flex;
   gap: 15px;
 }
 
-.custom-checkbox {
+.custom__checkbox {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
 
-.custom-checkbox + label {
+.custom__checkbox + label {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -49,7 +49,7 @@ const model = computed({
   -ms-user-select: none;
   user-select: none;
 }
-.custom-checkbox + label::before {
+.custom__checkbox + label::before {
   content: "";
   display: inline-block;
   width: 1em;
@@ -64,7 +64,7 @@ const model = computed({
   background-size: 90% 90%;
 }
 
-.custom-checkbox:checked + label::before {
+.custom__checkbox:checked + label::before {
   border-color: #0968fe;
   background-color: #0968fe;
   background-image: url("@/assets/icons/check.svg");

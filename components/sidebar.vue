@@ -55,7 +55,7 @@ onMounted(() => {
 
 <style scoped>
 .sidebar {
-  height: 95vh;
+  height: 100vh;
   width: 260px;
   padding: 20px;
 
