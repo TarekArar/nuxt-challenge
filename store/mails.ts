@@ -4,47 +4,57 @@ import { Email } from "types/email";
 const initialEmails = [
   {
     id: 0,
-    text: "Your 7- figure goes bye bye at midnight",
+    subject: "Your 7- figure goes bye bye at midnight",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
+
   {
     id: 1,
-    text: "[WEEKEND ONLY] Get this NOW before",
+    subject: "[WEEKEND ONLY] Get this NOW before",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
   {
     id: 2,
-    text: "Uh oh your prescription is expiring",
+    subject: "Uh oh your prescription is expiring",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
   {
     id: 3,
-    text: "[WEEKEND ONLY] Get this NOW before",
+    subject: "[WEEKEND ONLY] Get this NOW before",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
   {
     id: 4,
-    text: "Uh oh your prescription is expiring",
+    subject: "Uh oh your prescription is expiring",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: true,
   },
   {
     id: 5,
-    text: "[WEEKEND ONLY] Get this NOW before",
+    subject: "[WEEKEND ONLY] Get this NOW before",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
   {
     id: 6,
-    text: "Uh oh your prescription is expiring",
+    subject: "Uh oh your prescription is expiring",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: true,
   },
   {
     id: 7,
-    text: "[WEEKEND ONLY] Get this NOW before",
+    subject: "[WEEKEND ONLY] Get this NOW before",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
   {
     id: 8,
-    text: "Uh oh your prescription is expiring",
+    subject: "Uh oh your prescription is expiring",
+    content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, asperiores animi! Nihil tenetur quis sit accusantium unde placeat mollitia esse debitis saepe voluptatibus delectus voluptatem expedita, sequi ducimus vel pariatur?`,
     archived: false,
   },
 ];

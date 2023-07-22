@@ -11,67 +11,69 @@ const archive = () => {
   resetEmails(store.inboxEmails);
 };
 
+const keydownEventListener = (event) => {
+  console.log(event.keyCode);
+  if (event.keyCode == 65) {
+    archive();
+  }
+
+  if (event.keyCode == 82) {
+    markSelectedAsRead();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("keydown", keydownEventListener);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("keydown", keydownEventListener);
+});
+
 const allSelected = computed(
   () => selectedEmails.value.length == emails.value.length
 );
 </script>
 
 <template>
-  <div class="inbox-container">
-    <h2 class="title">Inbox</h2>
-
-    <div class="emails-list">
-      <div class="header">
-        <div>
-          <input
-            type="checkbox"
-            @click.stop="selectAll"
-            v-model="allSelected"
-          />
-          Emails Selected ({{ selectedEmails.length }})
-        </div>
-
-        <div class="header-actions">
-          <div class="header-action" @click="markSelectedAsRead">
-            <img src="~/assets/icons/mail.svg" />
-            <p>Mark as read (r)</p>
-          </div>
-          <div class="header-action" @click="archive">
-            <img src="~/assets/icons/trash.svg" />
-            <p>Archive (a)</p>
-          </div>
-        </div>
+  <div class="emails-list">
+    <div class="header">
+      <div>
+        <input type="checkbox" @click.stop="selectAll" v-model="allSelected" />
+        Emails Selected ({{ selectedEmails.length }})
       </div>
 
-      <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
+      <div class="header-actions">
+        <div class="header-action" @click="markSelectedAsRead">
+          <img src="~/assets/icons/mail.svg" />
+          <p>Mark as read (r)</p>
+        </div>
+        <div class="header-action" @click="archive">
+          <img src="~/assets/icons/trash.svg" />
+          <p>Archive (a)</p>
+        </div>
+      </div>
     </div>
+
+    <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
   </div>
 </template>
 
 <style scoped>
-inbox-container {
-  width: calc(100vh - 260px);
-  height: 100vh;
-  flex-shrink: 2;
-  padding: 20px;
-}
-
-.title {
-  margin-left: 20px;
-}
-
 .emails-list {
   display: flex;
   flex-direction: column;
+  width: calc(100vw - 350px);
 }
 
 .header {
   display: flex;
   height: 60px;
-  width: calc(100vw - 320px);
-  padding: 0px 24px;
+  /* max-width: calc(100vw - 350px); */
   align-items: center;
   justify-content: space-between;
+
+  padding-left: 20px;
 
   align-self: stretch;
 
@@ -82,7 +84,6 @@ inbox-container {
 .header-actions {
   display: flex;
   gap: 20px;
-  padding: 5px 20px;
 }
 
 .header-action {

@@ -5,35 +5,61 @@ const props = defineProps({
   emailsList: { type: Array<UIEmail>, required: true },
 });
 
-const activeEmailId: Ref<Number | null> = ref(null);
+const emit = defineEmits(["archive"]);
+
+const onArchive = (id: Number) => emit("archive", id);
+
+const activeEmail: Ref<UIEmail | null> = ref(null);
 
 const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
-const onEmailClick = (id: Number) => {
-  activeEmailId.value = id;
+const onEmailClick = (email: UIEmail) => {
+  activeEmail.value = email;
   openModal();
 };
 </script>
 
 <template>
-  <div class="emails-container">
+  <div class="emails--empty" v-if="emailsList.length == 0">
+    There is no emails
+  </div>
+  <div v-else class="emails-container">
     <div
       v-for="email in emailsList"
       :key="email.id"
       :class="{ email: true, 'email--disabled': email.read }"
-      @click="onEmailClick(email.id)"
+      @click="onEmailClick(email)"
     >
-      <input type="checkbox" v-model="email.selected" @click.stop="" />
-      <p class="email-title">{{ email.text }}</p>
+      <input
+        type="checkbox"
+        class="email__checkbox"
+        v-model="email.selected"
+        @click.stop=""
+      />
+      <p class="email-title">{{ email.subject }}</p>
     </div>
 
     <modal v-if="isModalOpen" :close="closeModal">
       <div class="modal-header">
-        <div class="modal-button">Mark as read (r)</div>
-        <div class="modal-button">Archive (a)</div>
+        <p @click="closeModal">Close (ESC)</p>
+
+        <div class="modal-actions">
+          <div class="modal-action">
+            <img src="~/assets/icons/mail.svg" />
+            <p>Mark as read (r)</p>
+          </div>
+          <div class="modal-action">
+            <img
+              src="~/assets/icons/trash.svg"
+              @click="archive(activeEmail?.id)"
+            />
+            <p>Archive (a)</p>
+          </div>
+        </div>
       </div>
 
-      <p>{{ emailsList.find((email) => email.id == activeEmailId).text }}</p>
+      <h3>{{ activeEmail.subject }}</h3>
+      <p>{{ activeEmail.content }}</p>
     </modal>
   </div>
 </template>
@@ -42,6 +68,14 @@ const onEmailClick = (id: Number) => {
 .emails-container {
   display: flex;
   flex-direction: column;
+}
+
+.emails--empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  text-transform: capitalize;
 }
 
 .email {
@@ -71,17 +105,31 @@ const onEmailClick = (id: Number) => {
 
 .modal-header {
   display: flex;
+  height: 60px;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
+
+  align-self: stretch;
+}
+
+.modal-actions {
+  display: flex;
   gap: 20px;
 }
 
-.modal-button {
-  background: #f9f9f9;
-  height: 30px;
-  padding: 5px 20px;
-  border-radius: 5px;
+.modal-action {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 8px;
+}
+
+.email__checkbox {
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.input[type="checkbox"]:checked {
+  background-color: #0968fe;
 }
 </style>

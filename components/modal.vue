@@ -14,7 +14,6 @@ onMounted(() => {
 <template>
   <div class="modal-overlay" @click.passive="close">
     <div class="modal" @click.stop="">
-      <p @click="close" class="close">Close (ESC)</p>
       <slot />
     </div>
   </div>
@@ -35,10 +34,11 @@ onMounted(() => {
 .modal {
   background-color: white;
   height: 100vh;
-  width: 40vw;
+  width: 710px;
+
   animation-name: slidein;
   animation-duration: 1s;
-  padding: 0 20px;
+  padding: 30px;
 }
 
 @keyframes slidein {

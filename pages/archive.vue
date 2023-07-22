@@ -5,31 +5,18 @@ const store = useMailsStore();
 
 const { emails, selectedEmails, selectAll, markSelectedAsRead, resetEmails } =
   useMailsManager(store.archivedEmails);
-
-// const unArchive = () => {
-//   selectedEmails.value.map((el) => store.unArchiveEmail(el.id));
-//   resetEmails(store.archivedEmails);
-// };
 </script>
 
 <template>
-  <div class="inbox-container">
-    <h2 class="title">Archive</h2>
-
-    <div class="emails-list">
-      <div class="header">
-        <div>
-          <input
-            type="checkbox"
-            @click.stop="selectAll"
-            v-model="allSelected"
-          />
-          Emails Selected ({{ selectedEmails.length }})
-        </div>
+  <div class="emails-list">
+    <div class="header">
+      <div>
+        <input type="checkbox" @click.stop="selectAll" v-model="allSelected" />
+        Emails Selected ({{ selectedEmails.length }})
       </div>
-
-      <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
     </div>
+
+    <EmailsList :emailsList="emails" @archive="store.archiveEmail" />
   </div>
 </template>
 

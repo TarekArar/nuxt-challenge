@@ -24,24 +24,6 @@ export default function useMailsManager(initialMails) {
     });
   };
 
-  const keydownEventListener = (event) => {
-    if (event.keyCode == 67) {
-      archiveEmails();
-    }
-
-    if (event.keyCode == 82) {
-      markSelectedAsRead();
-    }
-  };
-
-  onMounted(() => {
-    document.addEventListener("keydown", keydownEventListener);
-  });
-
-  onUnmounted(() => {
-    document.removeEventListener("keydown", keydownEventListener);
-  });
-
   return {
     emails,
     selectedEmails,
